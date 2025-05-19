@@ -390,3 +390,209 @@
 #endregion
 
 #endregion
+
+#region Homework2
+
+#region Task1
+
+// while (true) 
+// {
+//     Console.WriteLine("Numeral System Converter:");
+//     Console.WriteLine("1. Decimal -> Binary");
+//     Console.WriteLine("2. Decimal -> Hexadecimal");
+//     Console.WriteLine("3. Binary -> Decimal");
+//     Console.WriteLine("4. Hexadecimal -> Decimal");
+//     Console.WriteLine("5. Exit");
+//     Console.Write("Choose an option: ");
+//
+//     string? choice = Console.ReadLine();
+//
+//     if (choice == "5")
+//         break;
+//
+//     Console.Write("Enter a number: ");
+//     string? input = Console.ReadLine();
+//
+//     try
+//     {
+//         switch (choice)
+//         {
+//             case "1":
+//                 int decToBin = int.Parse(input);
+//                 Console.WriteLine($"Result: {Convert.ToString(decToBin, 2)}");
+//                 break;
+//
+//             case "2":
+//                 int decToHex = int.Parse(input);
+//                 Console.WriteLine($"Result: {Convert.ToString(decToHex, 16).ToUpper()}");
+//                 break;
+//
+//             case "3":
+//                 int binToDec = Convert.ToInt32(input, 2);
+//                 Console.WriteLine($"Result: {binToDec}");
+//                 break;
+//
+//             case "4":
+//                 int hexToDec = Convert.ToInt32(input, 16);
+//                 Console.WriteLine($"Result: {hexToDec}");
+//                 break;
+//
+//             default:
+//                 Console.WriteLine("Invalid option. Please try again.");
+//                 break;
+//         }
+//     }
+//     catch (FormatException)
+//     {
+//         Console.WriteLine("Error: Invalid number format.");
+//     }
+//     catch (OverflowException)
+//     {
+//         Console.WriteLine("Error: Number is out of range for type int.");
+//     }
+//
+//     Console.WriteLine();
+// }
+//
+// Console.WriteLine("Exiting program...");
+
+#endregion
+
+#region Task2
+
+// Console.Write("Input word from 'zero' to 'nine': ");
+// string? input = Console.ReadLine().ToLower().Trim();
+//
+// int number = -1;
+//
+// switch (input)
+// {
+//     case "zero":
+//         number = 0;
+//         break;
+//     case "one":
+//         number = 1;
+//         break;
+//     case "two":
+//         number = 2;
+//         break;
+//     case "three":
+//         number = 3;
+//         break;
+//     case "four":
+//         number = 4;
+//         break;
+//     case "five":
+//         number = 5;
+//         break;
+//     case "six":
+//         number = 6;
+//         break;
+//     case "seven":
+//         number = 7;
+//         break;
+//     case "eight":
+//         number = 8;
+//         break;
+//     case "nine":
+//         number = 9;
+//         break;
+//     default:
+//         Console.WriteLine("Wrong input.");
+//         return;
+// }
+//
+// Console.WriteLine("Number: " + number);
+
+#endregion
+
+#region Task3
+
+// using CSharpHomeworks;
+//
+// try
+// {
+//     ForeignPassport passport = new ForeignPassport("MP1234567", "Bagdagul Bagdagul Bagdagul Qizi", 
+//         new DateTime(2020, 5, 15), "Azerbaijan");
+//     Console.WriteLine(passport); 
+// }
+// catch (ArgumentException ex)
+// {
+//     Console.WriteLine("Error: " + ex.Message);
+// }
+
+#endregion
+
+#region Task4
+
+// static bool EvaluateExpression(string expression)
+// {
+//     string[] operators = { ">=", "<=", "==", "!=", ">", "<" };
+//     foreach (string op in operators)
+//     {
+//         int index = expression.IndexOf(op);
+//         if (index != -1)
+//         {
+//             string left = expression.Substring(0, index).Trim();
+//             string right = expression.Substring(index + op.Length).Trim();
+//
+//             if (!int.TryParse(left, out int leftValue))
+//                 throw new FormatException("The left side is not an integer.");
+//
+//             if (!int.TryParse(right, out int rightValue))
+//                 throw new FormatException("The right side is not an integer.");
+//
+//             switch (op)
+//             {
+//                 case ">": return leftValue > rightValue;
+//                 case "<": return leftValue < rightValue;
+//                 case ">=": return leftValue >= rightValue;
+//                 case "<=": return leftValue <= rightValue;
+//                 case "==": return leftValue == rightValue;
+//                 case "!=": return leftValue != rightValue;
+//             }
+//         }
+//     }
+//
+//     throw new InvalidOperationException("Operator not recognized or expression format is invalid.");
+// }
+//
+// Console.Write("Enter a logical expression (eg 3>2): ");
+// string? input = Console.ReadLine().Trim();
+//
+// try
+// {
+//     bool result = EvaluateExpression(input);
+//     Console.WriteLine("Result: " + result);
+// }
+// catch (Exception ex)
+// {
+//     Console.WriteLine("Error: " + ex.Message);
+// }
+
+#endregion
+
+#region Task5
+
+// using CSharpHomeworks;
+//
+// try
+// {
+//     var account = new BankAccount("John Doe", 1000m);
+//     Console.WriteLine(account); 
+//
+//     account.Deposit(250m);
+//     account.Withdraw(150m);
+//     // account.Withdraw(2000m); // ← раскомментируйте для проверки ошибки
+//
+//     Console.WriteLine(account);
+// }
+// catch (Exception ex)
+// {
+//     Console.WriteLine($"Error: {ex.Message}");
+// }
+
+#endregion
+
+#endregion
+
