@@ -596,3 +596,433 @@
 
 #endregion
 
+#region Homework3
+
+#region Task1-2
+
+//Мы делали это задание на С++. Просто переделал под С#
+
+// TicTacToeGame.Game.Run();
+//
+// namespace TicTacToeGame
+// {
+//     enum CellState { Empty, X, O }
+//
+//     struct Move
+//     {
+//         public int Row;
+//         public int Col;
+//
+//         public Move(int row, int col)
+//         {
+//             Row = row;
+//             Col = col;
+//         }
+//     }
+//
+//     static class Game
+//     {
+//         public static CellState[,] Board = new CellState[3, 3];
+//         public static Random Rng = new Random(); //использовал класс для рандома
+//         public static bool IsVsComputer;
+//
+//         public static void Run()
+//         {
+//             Console.WriteLine("Select game mode:");
+//             Console.WriteLine("1 - Player vs Computer");
+//             Console.WriteLine("2 - Player vs Player");
+//             string? choice = Console.ReadLine();
+//             IsVsComputer = choice == "1";
+//
+//             Console.WriteLine("Deciding who goes first...");
+//             bool isPlayer1Turn = Rng.Next(2) == 0; //прочел что это метод для рандомных чисел
+//
+//             InitBoard();
+//             PrintBoard();
+//
+//             while (true)
+//             {
+//                 if (isPlayer1Turn || !IsVsComputer)
+//                     PlayerTurn(isPlayer1Turn ? CellState.X : CellState.O);
+//                 else
+//                     ComputerTurn(CellState.O);
+//
+//                 PrintBoard();
+//
+//                 var winner = CheckWinner();
+//                 if (winner != null)
+//                 {
+//                     Console.WriteLine(winner == CellState.X ? "Player X wins!" : "Player O wins!");
+//                     break;
+//                 }
+//
+//                 if (IsBoardFull())
+//                 {
+//                     Console.WriteLine("It's a draw!");
+//                     break;
+//                 }
+//
+//                 isPlayer1Turn = !isPlayer1Turn;
+//             }
+//         }
+//
+//         public static void InitBoard()
+//         {
+//             for (int i = 0; i < 3; i++)
+//                 for (int j = 0; j < 3; j++)
+//                     Board[i, j] = CellState.Empty;
+//         }
+//
+//         public static void PrintBoard()
+//         {
+//             Console.WriteLine("  0 1 2");
+//             for (int i = 0; i < 3; i++)
+//             {
+//                 Console.Write(i + " ");
+//                 for (int j = 0; j < 3; j++)
+//                 {
+//                     char c = Board[i, j] switch
+//                     {
+//                         CellState.X => 'X',
+//                         CellState.O => 'O',
+//                         _ => '.'
+//                     };
+//                     Console.Write(c + " ");
+//                 }
+//                 Console.WriteLine();
+//             }
+//         }
+//
+//         public static void PlayerTurn(CellState symbol)
+//         {
+//             while (true)
+//             {
+//                 Console.WriteLine($"Player {symbol}, enter your move (row and column):");
+//                 string? input = Console.ReadLine();
+//                 if (input == null) continue;
+//
+//                 string[] parts = input.Split();
+//                 if (parts.Length == 2 &&
+//                     int.TryParse(parts[0], out int row) &&
+//                     int.TryParse(parts[1], out int col) &&
+//                     row >= 0 && row < 3 &&
+//                     col >= 0 && col < 3 &&
+//                     Board[row, col] == CellState.Empty)
+//                 {
+//                     Board[row, col] = symbol;
+//                     break;
+//                 }
+//
+//                 Console.WriteLine("Invalid input. Try again.");
+//             }
+//         }
+//
+//         public static void ComputerTurn(CellState symbol)
+//         {
+//             Console.WriteLine("Computer is thinking...");
+//             while (true)
+//             {
+//                 int row = Rng.Next(3);
+//                 int col = Rng.Next(3);
+//                 if (Board[row, col] == CellState.Empty)
+//                 {
+//                     Board[row, col] = symbol;
+//                     break;
+//                 }
+//             }
+//         }
+//
+//         public static CellState? CheckWinner()
+//         {
+//             for (int i = 0; i < 3; i++)
+//             {
+//                 if (Board[i, 0] != CellState.Empty &&
+//                     Board[i, 0] == Board[i, 1] &&
+//                     Board[i, 1] == Board[i, 2])
+//                     return Board[i, 0];
+//
+//                 if (Board[0, i] != CellState.Empty &&
+//                     Board[0, i] == Board[1, i] &&
+//                     Board[1, i] == Board[2, i])
+//                     return Board[0, i];
+//             }
+//
+//             if (Board[0, 0] != CellState.Empty &&
+//                 Board[0, 0] == Board[1, 1] &&
+//                 Board[1, 1] == Board[2, 2])
+//                 return Board[0, 0];
+//
+//             if (Board[0, 2] != CellState.Empty &&
+//                 Board[0, 2] == Board[1, 1] &&
+//                 Board[1, 1] == Board[2, 0])
+//                 return Board[0, 2];
+//
+//             return null;
+//         }
+//
+//         public static bool IsBoardFull()
+//         {
+//             foreach (var cell in Board)
+//                 if (cell == CellState.Empty)
+//                     return false;
+//             return true;
+//         }
+//     }
+// }
+
+#endregion
+
+#region Task3-4
+
+// using System.Text;
+//
+// MorseConverterApp.MorseApp.Run();
+//
+// namespace MorseConverterApp
+// {
+//     static class MorseApp
+//     {
+//         public static void Run()
+//         {
+//             Console.OutputEncoding = Encoding.UTF8;
+//             Console.WriteLine("Morse Code Translator");
+//             Console.WriteLine("1 - Text to Morse");
+//             Console.WriteLine("2 - Morse to Text");
+//             Console.Write("Choose an option: ");
+//             string? choice = Console.ReadLine();
+//
+//             if (choice == "1")
+//             {
+//                 Console.Write("Enter text: ");
+//                 string? text = Console.ReadLine();
+//                 if (text != null)
+//                 {
+//                     string morse = MorseTranslator.TextToMorse(text);
+//                     Console.WriteLine("Morse Code:");
+//                     Console.WriteLine(morse);
+//                 }
+//             }
+//             else if (choice == "2")
+//             {
+//                 Console.Write("Enter Morse code (letters separated by spaces, words by /): ");
+//                 string? morse = Console.ReadLine();
+//                 if (morse != null)
+//                 {
+//                     string text = MorseTranslator.MorseToText(morse);
+//                     Console.WriteLine("Translated Text:");
+//                     Console.WriteLine(text);
+//                 }
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Invalid choice.");
+//             }
+//         }
+//     }
+//
+//     static class MorseTranslator
+//     {
+//         private static char[] characters = new char[]
+//         {
+//             'A','B','C','D','E','F','G','H','I','J','K','L',
+//             'M','N','O','P','Q','R','S','T','U','V','W','X',
+//             'Y','Z',
+//             '0','1','2','3','4','5','6','7','8','9',
+//             '.',' ',',','?','!',' '
+//         };
+//
+//         private static string[] morseCodes = new string[]
+//         {
+//             ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---",
+//             "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-",
+//             "..-", "...-", ".--", "-..-", "-.--", "--..",
+//             "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.",
+//             ".-.-.-", "--..--", "/", "..--..", "-.-.--", "/"
+//         };
+//
+//         public static string TextToMorse(string input)
+//         {
+//             input = input.ToUpper();
+//             StringBuilder result = new StringBuilder();
+//
+//             foreach (char c in input)
+//             {
+//                 int index = FindCharacterIndex(c);
+//                 if (index != -1)
+//                 {
+//                     result.Append(morseCodes[index]).Append(" ");
+//                 }
+//                 else
+//                 {
+//                     result.Append("? ");
+//                 }
+//             }
+//
+//             return result.ToString().Trim();
+//         }
+//
+//         public static string MorseToText(string input)
+//         {
+//             StringBuilder result = new StringBuilder();
+//             string[] words = input.Split(" / "); // Morse words
+//
+//             foreach (string word in words)
+//             {
+//                 string[] letters = word.Split(' ');
+//                 foreach (string morseLetter in letters)
+//                 {
+//                     int index = FindMorseIndex(morseLetter);
+//                     if (index != -1)
+//                     {
+//                         result.Append(characters[index]);
+//                     }
+//                     else
+//                     {
+//                         result.Append('?');
+//                     }
+//                 }
+//                 result.Append(' ');
+//             }
+//
+//             return result.ToString().Trim();
+//         }
+//
+//         private static int FindCharacterIndex(char c)
+//         {
+//             for (int i = 0; i < characters.Length; i++)
+//             {
+//                 if (characters[i] == c)
+//                     return i;
+//             }
+//             return -1;
+//         }
+//
+//         private static int FindMorseIndex(string code)
+//         {
+//             for (int i = 0; i < morseCodes.Length; i++)
+//             {
+//                 if (morseCodes[i] == code)
+//                     return i;
+//             }
+//             return -1;
+//         }
+//     }
+// }
+
+
+#endregion
+
+#region Task5
+
+// using Library;
+//
+// LibrarySystem.Run();
+
+#endregion
+
+#region Task6
+
+// using static TodoApp.TaskManager;
+//
+// AddTask(new TodoApp.Task("Buy groceries", "Milk, Bread, Eggs"));
+// AddTask(new TodoApp.Task("Fix bug", "NullReferenceException in TaskManager"));
+// AddTask(new TodoApp.Task("Read book", "Learn C#"));
+//
+// GetTask(1)?.ChangeStatus(TodoApp.TaskStatus.InProgress);
+// GetTask(2)?.ChangeStatus(TodoApp.TaskStatus.Completed);
+//
+// ShowTasksByStatus(TodoApp.TaskStatus.NotStarted);
+// ShowTasksByStatus(TodoApp.TaskStatus.Completed);
+//
+// ShowAllTasks();
+//
+// namespace TodoApp
+// {
+//     enum TaskStatus
+//     {
+//         NotStarted,
+//         InProgress,
+//         Completed,
+//         Deferred
+//     }
+//
+//     class Task
+//     {
+//         public string Title;
+//         public string Description;
+//         public TaskStatus Status;
+//
+//         public Task(string title, string description)
+//         {
+//             Title = title;
+//             Description = description;
+//             Status = TaskStatus.NotStarted;
+//         }
+//
+//         public void ChangeStatus(TaskStatus newStatus)
+//         {
+//             Status = newStatus;
+//         }
+//
+//         public void Print()
+//         {
+//             Console.WriteLine($"Title: {Title}");
+//             Console.WriteLine($"Description: {Description}");
+//             Console.WriteLine($"Status: {Status}");
+//             Console.WriteLine(new string('-', 30));
+//         }
+//     }
+//
+//     static class TaskManager
+//     {
+//         private const int MaxTasks = 100;
+//         private static Task[] _tasks = new Task[MaxTasks];
+//         private static int _taskCount = 0;
+//
+//         public static void AddTask(Task task)
+//         {
+//             if (_taskCount < MaxTasks)
+//             {
+//                 _tasks[_taskCount++] = task;
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Task list is full.");
+//             }
+//         }
+//
+//         public static void ShowTasksByStatus(TaskStatus status)
+//         {
+//             Console.WriteLine($"--- Tasks with status: {status} ---");
+//             for (int i = 0; i < _taskCount; i++)
+//             {
+//                 if (_tasks[i].Status == status)
+//                 {
+//                     _tasks[i].Print();
+//                 }
+//             }
+//         }
+//
+//         public static void ShowAllTasks()
+//         {
+//             Console.WriteLine("--- All Tasks ---");
+//             for (int i = 0; i < _taskCount; i++)
+//             {
+//                 _tasks[i].Print();
+//             }
+//         }
+//
+//         public static Task GetTask(int index)
+//         {
+//             if (index >= 0 && index < _taskCount)
+//             {
+//                 return _tasks[index];
+//             }
+//             return null;
+//         }
+//     }
+// }
+
+#endregion
+
+#endregion
