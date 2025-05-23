@@ -1026,3 +1026,80 @@
 #endregion
 
 #endregion
+
+#region Homework4
+
+#region Task1
+
+
+
+#endregion
+
+
+#region Task2
+
+
+
+#endregion
+
+
+#region Task3
+
+
+
+#endregion
+
+
+#region Task4
+
+
+
+#endregion
+
+
+#region Task5
+
+
+
+#endregion
+
+
+#endregion
+
+#region Homework5
+using System.Text.Json;
+
+string apiKey = "4fde8f5f4d4d3c04d20cf7bfbeb76e17";
+
+Console.Write("Input city: ");
+string? city = Console.ReadLine();
+
+string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric&lang=en";
+
+try
+{
+    using HttpClient client = new HttpClient();
+
+    try
+    {
+        string jsonResponse = await client.GetStringAsync(url);
+
+        using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+        var root = doc.RootElement;
+
+        var temp = root.GetProperty("main").GetProperty("temp").GetDouble();
+        var weatherDescription = root.GetProperty("weather")[0].GetProperty("description").GetString();
+
+        Console.WriteLine($"Weather in city {city}: {weatherDescription}, temperature {temp}°C");
+    }
+    catch (HttpRequestException e)
+    {
+        Console.WriteLine("Error: " + e.Message);
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Error: " + ex.Message);
+}
+
+#endregion
