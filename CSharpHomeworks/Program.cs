@@ -1067,39 +1067,66 @@
 #endregion
 
 #region Homework5
-using System.Text.Json;
-
-string apiKey = "4fde8f5f4d4d3c04d20cf7bfbeb76e17";
-
-Console.Write("Input city: ");
-string? city = Console.ReadLine();
-
-string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric&lang=en";
-
-try
-{
-    using HttpClient client = new HttpClient();
-
-    try
-    {
-        string jsonResponse = await client.GetStringAsync(url);
-
-        using JsonDocument doc = JsonDocument.Parse(jsonResponse);
-        var root = doc.RootElement;
-
-        var temp = root.GetProperty("main").GetProperty("temp").GetDouble();
-        var weatherDescription = root.GetProperty("weather")[0].GetProperty("description").GetString();
-
-        Console.WriteLine($"Weather in city {city}: {weatherDescription}, temperature {temp}°C");
-    }
-    catch (HttpRequestException e)
-    {
-        Console.WriteLine("Error: " + e.Message);
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine("Error: " + ex.Message);
-}
+// using System.Text.Json;
+//
+// string apiKey = "4fde8f5f4d4d3c04d20cf7bfbeb76e17";
+// IWeatherService weatherService = new OpenWeatherMapService(apiKey);
+//
+// Console.Write("Input city: ");
+// string? city = Console.ReadLine();
+//
+// if (!string.IsNullOrWhiteSpace(city))
+// {
+//     string result = weatherService.GetWeather(city);
+//     Console.WriteLine(result);
+// }
+// else
+// {
+//     Console.WriteLine("City name cannot be empty.");
+// }
+//
+//
+// public interface IWeatherService
+// {
+//     string GetWeather(string city);
+// }
+//
+// public class OpenWeatherMapService : IWeatherService
+// {
+//     private readonly string _apiKey;
+//
+//     public OpenWeatherMapService(string apiKey)
+//     {
+//         _apiKey = apiKey;
+//     }
+//
+//     public string GetWeather(string city)
+//     {
+//         string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={_apiKey}&units=metric&lang=en";
+//
+//         using HttpClient client = new HttpClient();
+//
+//         try
+//         {
+//             string jsonResponse = client.GetStringAsync(url).GetAwaiter().GetResult();
+//
+//             using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+//             var root = doc.RootElement;
+//
+//             var temp = root.GetProperty("main").GetProperty("temp").GetDouble();
+//             var weatherDescription = root.GetProperty("weather")[0].GetProperty("description").GetString();
+//
+//             return $"Weather in city {city}: {weatherDescription}, temperature {temp}°C";
+//         }
+//         catch (HttpRequestException e)
+//         {
+//             return "Error: " + e.Message;
+//         }
+//         catch (Exception e)
+//         {
+//             return "Error: " + e.Message;
+//         }
+//     }
+// }
 
 #endregion
