@@ -1029,41 +1029,148 @@
 
 #region Homework4
 
-#region Task1
+#region Task1-3
 
-
+// using CSharpHomeworks;
+//
+// MyArray test = new(new List<int>());
+//
+// test.Add(12);
+// test.Add(21);
+// test.Add(32);
+// test.Add(43);
+// test.Add(54);
+//
+// Console.WriteLine($"Less 12: {test.Less(12)}");
+// Console.WriteLine($"Greater 21: {test.Greater(21)}");
+// test.ShowOdd();
+// test.ShowEven();
+// Console.WriteLine(test.CountDistinct());
+// Console.WriteLine(test.EqualToValue(32));
 
 #endregion
-
-
-#region Task2
-
-
-
-#endregion
-
-
-#region Task3
-
-
-
-#endregion
-
 
 #region Task4
 
-
+// using CSharpHomeworks;
+//
+// //Я не стал создавать пример с классом Радио так как логика у них была бы похожая
+//
+// var tv = new Tv(100);
+// tv.SetChannel(5);      
+// tv.TurnOn();           
+// tv.SetChannel(101);    
+// tv.SetChannel(5);      
+// Console.WriteLine(tv.CurrentChannel()); 
+//
+// class Tv : IRemoteControl
+// {
+//     private readonly int _channelCount;
+//     private bool _status = false;
+//     private int _currentChannel = 1;
+//     
+//     public Tv(int channelCount)
+//     {
+//         if (channelCount <= 0)
+//             throw new ArgumentException("Channel count must be greater than 0");
+//
+//         _channelCount = channelCount;
+//     }
+//     
+//     public void TurnOn()
+//     {
+//         _status = true;
+//         Console.WriteLine("Turned on");
+//     }
+//
+//     public void TurnOff()
+//     {
+//         _status = false;
+//         Console.WriteLine("Turned off");
+//     }
+//
+//     public void SetChannel(int channel)
+//     {
+//         if (!_status)
+//         {
+//             Console.WriteLine("TV is off");
+//             return;
+//         }
+//
+//         if (channel < 1 || channel > _channelCount)
+//         {
+//             Console.WriteLine("Channel not found");
+//             return;
+//         }
+//
+//         _currentChannel = channel;
+//         Console.WriteLine($"Channel changed to {channel}");
+//     }
+//
+//     public int CurrentChannel()
+//     {
+//         return _currentChannel;
+//     }
+// }
 
 #endregion
-
 
 #region Task5
 
-
+// using CSharpHomeworks;
+//
+// IValidator passwordValidator = new PasswordValidator("StrongP4ss");
+// IValidator emailValidator = new EmailValidator("user@example.com");
+//
+// Console.WriteLine($"Password valid: {passwordValidator.Validate()}");
+// Console.WriteLine($"Email valid: {emailValidator.Validate()}");
+//
+// public class PasswordValidator : IValidator
+// {
+//     private readonly string _password;
+//
+//     public PasswordValidator(string password)
+//     {
+//         _password = password;
+//     }
+//
+//     public bool Validate()
+//     {
+//         if (string.IsNullOrWhiteSpace(_password)) return false;
+//         if (_password.Length < 8) return false;
+//         if (!_password.Any(char.IsDigit)) return false;
+//         if (!_password.Any(char.IsUpper)) return false;
+//
+//         return true;
+//     }
+// }
+//
+// public class EmailValidator : IValidator
+// {
+//     private readonly string _email;
+//
+//     public EmailValidator(string email)
+//     {
+//         _email = email;
+//     }
+//
+//     public bool Validate()
+//     {
+//         if (string.IsNullOrWhiteSpace(_email)) return false;
+//
+//         try
+//         {
+//             var addr = new System.Net.Mail.MailAddress(_email);
+//             return addr.Address == _email;
+//         }
+//         catch
+//         {
+//             return false;
+//         }
+//     }
+// }
 
 #endregion
-
-
 #endregion
 
 #region Homework5
