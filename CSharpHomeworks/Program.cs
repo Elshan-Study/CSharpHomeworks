@@ -1237,3 +1237,9 @@
 // }
 
 #endregion
+
+#region Homework6
+
+
+
+#endregion
