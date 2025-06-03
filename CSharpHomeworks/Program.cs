@@ -1240,6 +1240,167 @@
 
 #region Homework6
 
-
+// using System;
+// using System.Collections.Generic;
+//
+// Sensor sensor = new();
+// Dictionary<string, SensorHandler> subscribers = new();
+//
+// void AddSubscriber()
+// {
+//     Console.WriteLine("\nSelect subscriber type:");
+//     Console.WriteLine("1. Logger");
+//     Console.WriteLine("2. Alert when value is high (>70)");
+//     Console.WriteLine("3. Reaction to zero");
+//     Console.Write("Input number: ");
+//     string type = Console.ReadLine();
+//
+//     string id = Guid.NewGuid().ToString();
+//
+//     switch (type)
+//     {
+//         case "1":
+//             SensorHandler logger = (value) =>
+//                 Console.WriteLine($"[LOG]: Value changed to {value}");
+//             subscribers[id] = logger;
+//             sensor.Handlers += logger;
+//             Console.WriteLine("Subscriber 'Logger' added.");
+//             break;
+//
+//         case "2":
+//             SensorHandler alert = (value) =>
+//             {
+//                 if (value > 70)
+//                     Console.WriteLine($"[ALERT]: Warning! High value: {value}");
+//             };
+//             subscribers[id] = alert;
+//             sensor.Handlers += alert;
+//             Console.WriteLine("Subscriber 'Notification' added.");
+//             break;
+//
+//         case "3":
+//             SensorHandler zeroReaction = (value) =>
+//             {
+//                 if (value == 0)
+//                     Console.WriteLine($"[REACTION]: Null value detected!");
+//             };
+//             subscribers[id] = zeroReaction;
+//             sensor.Handlers += zeroReaction;
+//             Console.WriteLine("Subscriber 'Reaction to Zero' added.");
+//             break;
+//
+//         default:
+//             Console.WriteLine("Invalid subscriber type.");
+//             break;
+//     }
+// }
+//
+// void RemoveSubscriber()
+// {
+//     Console.WriteLine("\nCurrent subscribers:");
+//     var keys = new List<string>(subscribers.Keys);
+//
+//     if (keys.Count == 0)
+//     {
+//         Console.WriteLine("[No subscribers]");
+//         return;
+//     }
+//
+//     for (int i = 0; i < keys.Count; i++)
+//     {
+//         Console.WriteLine($"{i + 1}. {keys[i]}");
+//     }
+//
+//     Console.Write("Enter subscriber number to delete: ");
+//     if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= keys.Count)
+//     {
+//         string key = keys[index - 1];
+//         sensor.Handlers -= subscribers[key];
+//         subscribers.Remove(key);
+//         Console.WriteLine("Subscriber deleted.");
+//     }
+//     else
+//     {
+//         Console.WriteLine("Invalid input.");
+//     }
+// }
+//
+// void SetSensorValue()
+// {
+//     Console.Write("\nEnter new sensor value: ");
+//     if (int.TryParse(Console.ReadLine(), out int newValue))
+//     {
+//         sensor.SetValue(newValue);
+//     }
+//     else
+//     {
+//         Console.WriteLine("Wrong input.");
+//     }
+// }
+//
+// void ShowSubscribers()
+// {
+//     Console.WriteLine("\nList of subscribers:");
+//     if (subscribers.Count == 0)
+//     {
+//         Console.WriteLine("[EMPTY]");
+//         return;
+//     }
+//
+//     int i = 1;
+//     foreach (var pair in subscribers)
+//     {
+//         Console.WriteLine($"{i++}. {pair.Key}");
+//     }
+// }
+//
+// bool running = true;
+// while (running)
+// {
+//     Console.WriteLine("\nSelect a command:");
+//     Console.WriteLine("1. Add a subscriber");
+//     Console.WriteLine("2. Remove subscriber");
+//     Console.WriteLine("3. Set new value");
+//     Console.WriteLine("4. Show list of subscribers");
+//     Console.WriteLine("5. Exit");
+//     Console.Write("Enter command number: ");
+//     string input = Console.ReadLine();
+//
+//     switch (input)
+//     {
+//         case "1":
+//             AddSubscriber();
+//             break;
+//         case "2":
+//             RemoveSubscriber();
+//             break;
+//         case "3":
+//             SetSensorValue();
+//             break;
+//         case "4":
+//             ShowSubscribers();
+//             break;
+//         case "5":
+//             running = false;
+//             break;
+//         default:
+//             Console.WriteLine("Wrong command!");
+//             break;
+//     }
+// }
+// delegate void SensorHandler(int newValue);
+//
+// class Sensor
+// {
+//     private int _value;
+//     
+//     public SensorHandler Handlers;
+//
+//     public void SetValue(int newValue)
+//     {
+//         _value = newValue;
+//         Handlers?.Invoke(_value);
+//     }
+// }
 
 #endregion
