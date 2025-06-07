@@ -1404,3 +1404,136 @@
 // }
 
 #endregion
+
+#region Homework7
+// using System.Globalization;
+// using Models;
+// using Services;
+// using Utils;
+//
+// Directory.CreateDirectory("data");
+//
+// User? currentUser = null;
+//
+// void MainMenu()
+// {
+//     while (true)
+//     {
+//         Console.WriteLine("1. Login\n2. Registration\n3. Logout");
+//         var choice = Console.ReadLine();
+//
+//         if (choice == "1")
+//         {
+//             Console.Write("Login: ");
+//             var username = Console.ReadLine();
+//             Console.Write("Password: ");
+//             var password = Console.ReadLine();
+//
+//             currentUser = AuthService.Login(username!, password!);
+//             if (currentUser != null)
+//             {
+//                 Console.WriteLine("Successful login!");
+//                 Logger.Log($"{currentUser.Username} logged in.");
+//                 DataService.LoadUserData(currentUser);
+//                 UserMenu();
+//             }
+//             else Console.WriteLine("Incorrect data.");
+//         }
+//         else if (choice == "2")
+//         {
+//             Console.Write("Come up with a login: ");
+//             var username = Console.ReadLine();
+//             Console.Write("Think of a password: ");
+//             var password = Console.ReadLine();
+//
+//             if (AuthService.Register(username!, password!))
+//                 Console.WriteLine("Registration successful.");
+//             else
+//                 Console.WriteLine("Registration error.");
+//         }
+//         else if (choice == "3") break;
+//     }
+// }
+//
+// void UserMenu()
+// {
+//     while (true)
+//     {
+//         Console.WriteLine("\n1. View orders\n2. Add order\n3. Save data\n4. Load data\n5. Exit");
+//         var choice = Console.ReadLine();
+//
+//         switch (choice)
+//         {
+//             case "1":
+//                 ViewOrders();
+//                 break;
+//             case "2":
+//                 AddOrder();
+//                 break;
+//             case "3":
+//                 DataService.SaveUserData(currentUser!);
+//                 Console.WriteLine("Data saved.");
+//                 break;
+//             case "4":
+//                 DataService.LoadUserData(currentUser!);
+//                 Console.WriteLine("Data loaded.");
+//                 break;
+//             case "5":
+//                 Logger.Log($"{currentUser!.Username} logout.");
+//                 return;
+//         }
+//     }
+// }
+//
+// void ViewOrders()
+// {
+//     if (currentUser!.Orders.Count == 0)
+//     {
+//         Console.WriteLine("No orders.");
+//         return;
+//     }
+//
+//     for (int i = 0; i < currentUser.Orders.Count; i++)
+//     {
+//         var order = currentUser.Orders[i];
+//         Console.WriteLine($"\nOrder #{i + 1}: {order.Title} ({order.Date.ToShortDateString()})");
+//         foreach (var service in order.Services)
+//             Console.WriteLine($"  - {service.Description}: {service.Price:C}");
+//
+//         Console.WriteLine($"Total: {order.Total:C}");
+//     }
+//
+//     Console.WriteLine($"Total orders: {currentUser.Orders.Count}, sum: {currentUser.Orders.Sum(o => o.Total):C}");
+// }
+//
+// void AddOrder()
+// {
+//     Console.Write("Order name: ");
+//     var title = Console.ReadLine();
+//
+//     var order = new Order { Title = title! };
+//     while (true)
+//     {
+//         Console.Write("Enter service (or 'stop'): ");
+//         var desc = Console.ReadLine();
+//         if (desc!.ToLower() == "stop") break;
+//
+//         Console.Write("Cost: ");
+//         if (decimal.TryParse(Console.ReadLine(), NumberStyles.Float, CultureInfo.InvariantCulture, 
+//                 out var price))
+//         {
+//             order.Services.Add(new Service { Description = desc, Price = price });
+//         }
+//         else
+//         {
+//             Console.WriteLine("Incorrect cost.");
+//         }
+//     }
+//
+//     currentUser!.Orders.Add(order);
+//     Console.WriteLine("Order added.");
+// }
+//
+// MainMenu();
+
+#endregion
